@@ -1,0 +1,48 @@
+=== Create the deployment in Kubernetes
+
+Run the command below to create thew `kubernetes` deployment
+----
+$ kubectl apply -f deployment.yml
+----
+
+To see the pods in the deployment run this command:
+----
+$ kubectl get pods
+----
+----
+NAME                                   READY   STATUS    RESTARTS   AGE
+microprofile-deploy-8497bb9695-zs8dq   1/1     Running   0          73s
+----
+
+ You can scale up a deployment by using the following command:
+----
+ $ kubectl scale --replicas 3 deployment/microprofile-deploy
+----
+
+ Run the `$ kubectl get pods` command again and you should see the following:
+----
+NAME                                   READY   STATUS    RESTARTS   AGE
+microprofile-deploy-8497bb9695-7krqv   1/1     Running   0          13s
+microprofile-deploy-8497bb9695-glwk4   1/1     Running   0          12s
+microprofile-deploy-8497bb9695-zs8dq   1/1     Running   0          8m38s
+----
+
+In `kubernetes` servives are used to route traffic to pods.
+Go ahead and create our service by running the command below:
+----
+$ kubectl apply -f service.yaml
+----
+
+You can view your running services by running the following command
+----
+$ kubectl get service
+----
+Take note of the `PORT(S)` section
+----
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes             ClusterIP   10.96.0.1       <none>        443/TCP          46m
+microprofile-service   NodePort    10.107.204.68   <none>        9080:31296/TCP   60s
+----
+
+View your local running application on
+`http://localhost:31296/`
