@@ -1,0 +1,12 @@
+
+=== build docker tag
+
+----
+$ docker build -t demo:0.0.1 .
+----
+
+=== run docker image
+
+----
+$ docker run -p 9080:9080 demo:0.0.1
+----
