@@ -14,12 +14,12 @@ NAME                                   READY   STATUS    RESTARTS   AGE
 microprofile-deploy-8497bb9695-zs8dq   1/1     Running   0          73s
 ----
 
- You can scale up a deployment by using the following command:
+You can scale up a deployment by using the following command:
 ----
  $ kubectl scale --replicas 3 deployment/microprofile-deploy
 ----
 
- Run the `$ kubectl get pods` command again and you should see the following:
+Run the `$ kubectl get pods` command again and you should see the following:
 ----
 NAME                                   READY   STATUS    RESTARTS   AGE
 microprofile-deploy-8497bb9695-7krqv   1/1     Running   0          13s
