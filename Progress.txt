@@ -1,0 +1,6 @@
+1. Introduction >>> Done (1m 13s)
+2. Introduction to MicroProfile >>> Done (7m 27s)
+3. Run Locally with Docker >>> Done (12m 43s)
+4. Run Locally with Kubernetes >>> Done (12m 31s)
+5. Health Checks >>> Pending (13m 41s)
+
