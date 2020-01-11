@@ -44,5 +44,7 @@ kubernetes             ClusterIP   10.96.0.1       <none>        443/TCP        
 microprofile-service   NodePort    10.107.204.68   <none>        9080:31296/TCP   60s
 ----
 
-View your local running application on
-`http://localhost:31296/`
+To get the url of your local running application, use the following command
+----
+$ minikube service microprofile-service --url
+----

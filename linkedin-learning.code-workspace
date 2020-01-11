@@ -4,6 +4,9 @@
 			"path": "."
 		},
 		{
+			"path": "health-checks"
+		},
+		{
 			"path": "deploy-to-kubernetes"
 		},
 		{
