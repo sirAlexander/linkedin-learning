@@ -6,8 +6,11 @@ import org.eclipse.microprofile.health.Health;
 import org.eclipse.microprofile.health.HealthCheck;
 import org.eclipse.microprofile.health.HealthCheckResponse;
 
-public class EnvHealth {
+@Health
+@ApplicationScoped
+public class EnvHealth implements HealthCheck{
 
+   @Override
    public HealthCheckResponse call() {
       String customEnv = System.getenv("MY_CUSTOM_ENV");
       if (customEnv != null) {
