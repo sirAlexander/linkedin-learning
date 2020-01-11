@@ -27,7 +27,7 @@ microprofile-deploy-8497bb9695-glwk4   1/1     Running   0          12s
 microprofile-deploy-8497bb9695-zs8dq   1/1     Running   0          8m38s
 ----
 
-In `kubernetes` servives are used to route traffic to pods.
+In `kubernetes` services are used to route traffic to pods.
 Go ahead and create our service by running the command below:
 ----
 $ kubectl apply -f service.yaml
