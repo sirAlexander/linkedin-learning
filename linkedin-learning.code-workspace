@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "deploy-to-kubernetes"
+		},
+		{
+			"path": "run-with-docker"
+		}
+	],
+	"settings": {}
+}
