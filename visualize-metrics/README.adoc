@@ -1,0 +1,30 @@
+This will all be run in docker so we first have to create a docker network.
+
+.  The docker network will be created so that the Microprofile app and the prometheus app can communicate. Use the command below to create a network called `metrics`
+
+    docker network create metrics
+    
+. Build the application using
+
+    mvn install
+
+. Build the application into a docker container 
+
+    docker build -t demo:0.0.3 .
+
+. Run the application in docker, specifying the network, ports to expose and tag
+
+    docker run --rm --network metrics --name demo -p 9080:9080 demo:0.0.3
+
+=== Starting up prometheus
+
+. Once you have configured your `prometheus.yml` file, fire up prometheus via docker.
+
+    docker run --rm -d -p 9090:9090 --network metrics --name prometheus -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus:v2.4.0
+
+
+
+
+
+
+
