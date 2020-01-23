@@ -14,6 +14,9 @@
 		},
 		{
 			"path": "run-with-docker"
+		},
+		{
+			"path": "metrics"
 		}
 	],
 	"settings": {}

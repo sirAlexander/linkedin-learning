@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Sample MicroProfile App">
+
+    <featureManager>
+        <feature>microProfile-2.2</feature>
+    </featureManager>
+
+    <!-- turned off for demo purposes and not recommended in a production system -->
+    <mpMetrics authentication="false" />
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="${env.default.http.port}"
+                  httpsPort="${env.default.https.port}"/>
+
+</server>
