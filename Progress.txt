@@ -3,5 +3,6 @@
 3. Run Locally with Docker >>> Done (12m 43s)
 4. Run Locally with Kubernetes >>> Done (12m 31s)
 5. Health Checks >>> Done (13m 41s)
-6. Metrics >>> Pending (14m 21s)
+6. Metrics >>> Done (14m 21s)
+7. Distributed Tracing >>> Pending (23m 50s)
 
