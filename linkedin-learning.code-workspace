@@ -16,6 +16,12 @@
 			"path": "run-with-docker"
 		},
 		{
+			"path": "metrics"
+		},
+		{
+			"path": "visualize-metrics"
+		},
+		{
 			"path": "java-microservices-gRPC"
 		}
 	],
