@@ -7,6 +7,12 @@ $ sudo apt install -y protobuf-compiler
 $ protoc --version  # Ensure compiler version is 3+
 ```
 
+### Download protoc Java generation plugin
+
+Download the appropriate java generation grpc plugin from `mvnrepository`
+
+https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java
+
 ### Use Java Protocol Buffers
 
 To use protobuf in Java, use the protocol compiler (a.k.a. `protoc`) and use it to generate Java code for your `.proto` files:
