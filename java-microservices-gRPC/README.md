@@ -14,6 +14,7 @@ Download the appropriate java generation grpc plugin from `mvnrepository`
 https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java
 
 ### Chapters-01 & 02
+
 ```
 mkdir ch01-ch02
 cd ch01-ch02
@@ -26,3 +27,9 @@ To use protobuf in Java, use the protocol compiler (a.k.a. `protoc`) and use it 
 ```
 protoc --plugin=protoc-gen-grpc-java=$HOME/tools/grpc/protoc-gen-grpc-java-1.40.0-linux-x86_64.exe --grpc-java_out=. employee.proto
 ```
+
+### Testing gRPC
+
+Download and use the following tool to test your gRPC implementations.
+
+https://appimage.github.io/BloomRPC/
