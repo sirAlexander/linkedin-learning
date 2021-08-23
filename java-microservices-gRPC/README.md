@@ -13,6 +13,12 @@ Download the appropriate java generation grpc plugin from `mvnrepository`
 
 https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java
 
+### Chapters-01 & 02
+```
+mkdir ch01-ch02
+cd ch01-ch02
+```
+
 ### Use Java Protocol Buffers
 
 To use protobuf in Java, use the protocol compiler (a.k.a. `protoc`) and use it to generate Java code for your `.proto` files:

@@ -1,1 +1,2 @@
 run-with-docker/src/main/.gitignore
+/java-microservices-gRPC/.idea/
