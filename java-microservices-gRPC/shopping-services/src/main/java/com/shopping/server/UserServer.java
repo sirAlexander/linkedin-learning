@@ -28,13 +28,14 @@ public class UserServer {
                     .addService(new UserServiceImpl())
                     .build()
                     .start();
+            logger.info("Server started on port: " + port);
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 logger.info("Clean server shutdown in case JVM was shutdown");
                 try {
                     UserServer.this.stopServer();
                 } catch (InterruptedException exception) {
-                    logger.log(Level.SEVERE, "Server shutdown", exception);
+                    logger.log(Level.SEVERE, "Server shutdown interrupted", exception);
                 }
             }));
         } catch (IOException exception) {
