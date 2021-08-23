@@ -19,6 +19,12 @@ public class UserServer {
         userServer.startServer();
         userServer.blockUntilShutdown();
 
+        // Steps needed to get this running from the commandline as an executable jar
+        // i.e. java -jar <path to jar>
+        // 1. need to make changes to pom.xml file
+        // 2. add a plugin to create a fat jar
+        // 3. add the main method class in the pom.xml file
+        // 4. add resources folder to the jar
     }
 
     public void startServer() {
