@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.linkedin</groupId>
-	<artifactId>linkedin-batch-01-04</artifactId>
+	<artifactId>linkedin-batch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>linkedin-batch-01-04</name>
-	<description>linkedin-batch-01-04</description>
+	<name>linkedin-batch</name>
+	<description>This is a simple batch application</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

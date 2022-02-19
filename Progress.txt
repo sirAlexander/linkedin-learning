@@ -10,3 +10,13 @@
 
 === Building Java Microservices with gRPC ===
 
+
+
+
+=== Spring: Spring Batch - Kevin Bowersox ===
+
+1. Getting Started with Spring Batch
+- building a batch job
+
+2. Building Batch Jobs
+- Spring Batch architecture
