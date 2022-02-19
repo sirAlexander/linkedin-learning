@@ -43,12 +43,18 @@ public class LinkedinBatchApplication {
 
 	@Bean
 	public Step driveToAddressStep(){
+		boolean gotLost = false;
 		return this.stepBuilderFactory
 				.get("driveToAddress")
 				.tasklet(
 						new Tasklet() {
 							@Override
 							public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+
+								if(gotLost){
+									throw new RuntimeException("Got lost driving to the address");
+								}
+
 								System.out.println("Successfully arrived at address.");
 								return RepeatStatus.FINISHED;
 							}
