@@ -6,6 +6,7 @@ import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.flow.JobExecutionDecider;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -26,6 +27,64 @@ public class LinkedinBatchApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LinkedinBatchApplication.class, args);
+    }
+
+    @Bean
+    public JobExecutionDecider decider() {
+        return new DeliveryDecider();
+    }
+
+    @Bean
+    public JobExecutionDecider receiptDecider() {
+        return new ReceiptDecider();
+    }
+
+    @Bean
+    public Step thankCustomerStep() {
+        return this.stepBuilderFactory
+                .get("thankCustomer")
+                .tasklet(
+                        new Tasklet() {
+                            @Override
+                            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+                                System.out.println("Thanking the customer.");
+                                return RepeatStatus.FINISHED;
+                            }
+                        }
+                )
+                .build();
+    }
+
+    @Bean
+    public Step refundStep() {
+        return this.stepBuilderFactory
+                .get("refund")
+                .tasklet(
+                        new Tasklet() {
+                            @Override
+                            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+                                System.out.println("Refunding customer money.");
+                                return RepeatStatus.FINISHED;
+                            }
+                        }
+                )
+                .build();
+    }
+
+    @Bean
+    public Step leaveAtDoorStep() {
+        return this.stepBuilderFactory
+                .get("leaveAtDoor")
+                .tasklet(
+                        new Tasklet() {
+                            @Override
+                            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+                                System.out.println("Leaving the package at the door.");
+                                return RepeatStatus.FINISHED;
+                            }
+                        }
+                )
+                .build();
     }
 
     @Bean
@@ -113,11 +172,22 @@ public class LinkedinBatchApplication {
                 .get("deliverPackageJob")
                 .start(packageItemStep())
                 .next(driveToAddressStep())
-                .on("FAILED")
-                .to(storePackageStep())
+                    .on("FAILED")
+                    .to(storePackageStep())
                 .from(driveToAddressStep())
-                .on("*")
-                .to(givePackageToCustomerStep())
+                    .on("*")
+                    .to(decider())
+                        .on("PRESENT")
+                        .to(givePackageToCustomerStep())
+                        .next(receiptDecider())
+                            .on("CORRECT")
+                            .to(thankCustomerStep())
+                        .from(receiptDecider())
+                            .on("INCORRECT")
+                            .to(refundStep())
+                    .from(decider())
+                        .on("NOT_PRESENT")
+                        .to(leaveAtDoorStep())
                 .end()
                 .build();
     }
