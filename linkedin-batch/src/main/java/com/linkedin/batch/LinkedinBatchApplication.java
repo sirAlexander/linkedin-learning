@@ -6,6 +6,7 @@ import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.job.flow.JobExecutionDecider;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -26,6 +27,27 @@ public class LinkedinBatchApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LinkedinBatchApplication.class, args);
+    }
+
+    @Bean
+    public JobExecutionDecider decider() {
+        return new DeliveryDecider();
+    }
+
+    @Bean
+    public Step leaveStDoorStep() {
+        return this.stepBuilderFactory
+                .get("leaveAtDoor")
+                .tasklet(
+                        new Tasklet() {
+                            @Override
+                            public RepeatStatus execute(StepContribution stepContribution, ChunkContext chunkContext) throws Exception {
+                                System.out.println("Leaving the package at the door.");
+                                return RepeatStatus.FINISHED;
+                            }
+                        }
+                )
+                .build();
     }
 
     @Bean
@@ -117,7 +139,12 @@ public class LinkedinBatchApplication {
                 .to(storePackageStep())
                 .from(driveToAddressStep())
                 .on("*")
+                .to(decider())
+                .on("PRESENT")
                 .to(givePackageToCustomerStep())
+                .from(decider())
+                .on("NOT_PRESENT")
+                .to(leaveStDoorStep())
                 .end()
                 .build();
     }
