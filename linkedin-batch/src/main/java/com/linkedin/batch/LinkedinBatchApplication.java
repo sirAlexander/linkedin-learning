@@ -173,7 +173,7 @@ public class LinkedinBatchApplication {
                 .start(packageItemStep())
                 .next(driveToAddressStep())
                     .on("FAILED")
-                    .to(storePackageStep())
+                    .fail()
                 .from(driveToAddressStep())
                     .on("*")
                     .to(decider())
